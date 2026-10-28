@@ -32,10 +32,10 @@ function Index() {
   const featured = GAMES.slice(0, 3);
   return (
     <div>
-      <section className="grid items-center gap-8 rounded-2xl bg-cream p-6 text-cream-foreground md:grid-cols-[1.3fr_1fr] md:p-12">
-        <div>
+      <section className="grid items-center gap-10 rounded-2xl bg-cream p-6 text-cream-foreground md:grid-cols-2 md:p-10 lg:p-14">
+        <div className="min-w-0">
           <p className="text-xs font-bold uppercase tracking-[0.25em]">Edição nº 01 · cultura gamer</p>
-          <h1 className="mt-4 text-5xl font-extrabold leading-[0.95] md:text-7xl">
+          <h1 className="mt-4 max-w-[14ch] text-balance text-4xl font-extrabold leading-[1.02] sm:text-5xl lg:text-6xl">
             Não é só sobre zerar.
           </h1>
           <p className="mt-4 text-lg md:text-xl">É sobre tudo o que acontece no caminho.</p>
@@ -44,9 +44,9 @@ function Index() {
             <Link to="/biblioteca" className="inline-flex items-center rounded-full border border-cream-foreground px-5 py-2.5 text-sm font-semibold">Minha biblioteca</Link>
           </div>
         </div>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-3 gap-4">
           {featured.map((g, i) => (
-            <Link key={g.id} to="/jogo/$id" params={{ id: g.id }} className={i === 1 ? "translate-y-6" : ""}>
+            <Link key={g.id} to="/jogo/$id" params={{ id: g.id }} className={i === 1 ? "md:translate-y-6" : ""}>
               <Cover game={g} />
             </Link>
           ))}
