@@ -17,8 +17,19 @@ export function Logo({ className }: { className?: string }) {
 }
 
 export function Cover({ game, className }: { game: Game; className?: string }) {
+  const [failed, setFailed] = useState(false);
+  const showImg = Boolean(game.cover) && !failed;
   return (
-    <div className={cn("relative aspect-[3/4] overflow-hidden rounded-lg border text-foreground", coverClass(game.id), className)}>
+    <div className={cn("relative aspect-[3/4] overflow-hidden rounded-lg border text-foreground", !showImg && coverClass(game.id), className)}>
+      {showImg && (
+        <img
+          src={game.cover}
+          alt={`Capa de ${game.title}`}
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover"
+          onError={() => setFailed(true)}
+        />
+      )}
       <div className="absolute inset-x-0 bottom-0 bg-background/80 p-2 backdrop-blur-sm">
         <p className="font-display text-sm font-bold leading-tight">{game.title}</p>
       </div>
