@@ -17,7 +17,7 @@ export function Logo({ className }: { className?: string }) {
 
 export function Cover({ game, className }: { game: Game; className?: string }) {
   return (
-    <div className={cn("relative aspect-[3/4] overflow-hidden rounded-lg border", coverClass(game.id), className)}>
+    <div className={cn("relative aspect-[3/4] overflow-hidden rounded-lg border text-foreground", coverClass(game.id), className)}>
       <div className="absolute inset-x-0 bottom-0 bg-background/80 p-2 backdrop-blur-sm">
         <p className="font-display text-sm font-bold leading-tight">{game.title}</p>
       </div>
