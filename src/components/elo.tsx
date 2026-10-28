@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Star } from "lucide-react";
+import { useState } from "react";
 import { coverClass, type Game } from "@/lib/games";
 import { cn } from "@/lib/utils";
 
