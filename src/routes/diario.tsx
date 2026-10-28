@@ -6,7 +6,7 @@ import { uid, useReviews } from "@/lib/store";
 import { Empty, PageHeader, Stars, btn } from "@/components/elo";
 
 export const Route = createFileRoute("/diario")({
-  validateSearch: (s: Record<string, unknown>): { jogo?: string } => (typeof s.jogo === "string" ? { jogo: s.jogo } : {}),
+  validateSearch: (s: Record<string, unknown>): { jogo?: string } => (typeof s['jogo'] === "string" ? { jogo: s['jogo'] } : {}),
   head: () => ({
     meta: [
       { title: "Diário e avaliações — Elo" },

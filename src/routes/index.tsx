@@ -61,7 +61,7 @@ function Index() {
 
       <Section title="Descobertas" to="/explorar">
         <div className="grid gap-4 md:grid-cols-3">
-          {[["Para chorar no final", "outer-wilds"], ["Para jogar com calma", "stardew-valley"], ["Para testar seus reflexos", "celeste"]].map(([label, id]) => {
+          {([["Para chorar no final", "outer-wilds"], ["Para jogar com calma", "stardew-valley"], ["Para testar seus reflexos", "celeste"]] as const).map(([label, id]) => {
             const g = getGame(id)!;
             return (
               <Link key={id} to="/jogo/$id" params={{ id }} className="rounded-xl border bg-card p-5 transition hover:border-primary">

@@ -21,7 +21,7 @@ export const Route = createFileRoute("/guide")({
 });
 
 function Guide() {
-  const [gameId, setGameId] = useState(GAMES[0].id);
+  const [gameId, setGameId] = useState(GAMES[0]!.id);
   const [spoiler, setSpoiler] = useState<(typeof SPOILERS)[number]>("Sem spoilers");
   const [q, setQ] = useState("");
   const [msgs, setMsgs] = useState<Msg[]>([]);
