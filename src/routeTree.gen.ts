@@ -10,33 +10,128 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BibliotecaRouteImport } from './routes/biblioteca'
+import { Route as ComunidadeRouteImport } from './routes/comunidade'
+import { Route as DiarioRouteImport } from './routes/diario'
+import { Route as ExplorarRouteImport } from './routes/explorar'
+import { Route as GuideRouteImport } from './routes/guide'
+import { Route as PerfilRouteImport } from './routes/perfil'
+import { Route as JogoIdRouteImport } from './routes/jogo.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BibliotecaRoute = BibliotecaRouteImport.update({
+  id: '/biblioteca',
+  path: '/biblioteca',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComunidadeRoute = ComunidadeRouteImport.update({
+  id: '/comunidade',
+  path: '/comunidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiarioRoute = DiarioRouteImport.update({
+  id: '/diario',
+  path: '/diario',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExplorarRoute = ExplorarRouteImport.update({
+  id: '/explorar',
+  path: '/explorar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuideRoute = GuideRouteImport.update({
+  id: '/guide',
+  path: '/guide',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PerfilRoute = PerfilRouteImport.update({
+  id: '/perfil',
+  path: '/perfil',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JogoIdRoute = JogoIdRouteImport.update({
+  id: '/jogo/$id',
+  path: '/jogo/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/biblioteca': typeof BibliotecaRoute
+  '/comunidade': typeof ComunidadeRoute
+  '/diario': typeof DiarioRoute
+  '/explorar': typeof ExplorarRoute
+  '/guide': typeof GuideRoute
+  '/perfil': typeof PerfilRoute
+  '/jogo/$id': typeof JogoIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/biblioteca': typeof BibliotecaRoute
+  '/comunidade': typeof ComunidadeRoute
+  '/diario': typeof DiarioRoute
+  '/explorar': typeof ExplorarRoute
+  '/guide': typeof GuideRoute
+  '/perfil': typeof PerfilRoute
+  '/jogo/$id': typeof JogoIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/biblioteca': typeof BibliotecaRoute
+  '/comunidade': typeof ComunidadeRoute
+  '/diario': typeof DiarioRoute
+  '/explorar': typeof ExplorarRoute
+  '/guide': typeof GuideRoute
+  '/perfil': typeof PerfilRoute
+  '/jogo/$id': typeof JogoIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/biblioteca'
+    | '/comunidade'
+    | '/diario'
+    | '/explorar'
+    | '/guide'
+    | '/perfil'
+    | '/jogo/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/biblioteca'
+    | '/comunidade'
+    | '/diario'
+    | '/explorar'
+    | '/guide'
+    | '/perfil'
+    | '/jogo/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/biblioteca'
+    | '/comunidade'
+    | '/diario'
+    | '/explorar'
+    | '/guide'
+    | '/perfil'
+    | '/jogo/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BibliotecaRoute: typeof BibliotecaRoute
+  ComunidadeRoute: typeof ComunidadeRoute
+  DiarioRoute: typeof DiarioRoute
+  ExplorarRoute: typeof ExplorarRoute
+  GuideRoute: typeof GuideRoute
+  PerfilRoute: typeof PerfilRoute
+  JogoIdRoute: typeof JogoIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +143,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/biblioteca': {
+      id: '/biblioteca'
+      path: '/biblioteca'
+      fullPath: '/biblioteca'
+      preLoaderRoute: typeof BibliotecaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/comunidade': {
+      id: '/comunidade'
+      path: '/comunidade'
+      fullPath: '/comunidade'
+      preLoaderRoute: typeof ComunidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/diario': {
+      id: '/diario'
+      path: '/diario'
+      fullPath: '/diario'
+      preLoaderRoute: typeof DiarioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explorar': {
+      id: '/explorar'
+      path: '/explorar'
+      fullPath: '/explorar'
+      preLoaderRoute: typeof ExplorarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guide': {
+      id: '/guide'
+      path: '/guide'
+      fullPath: '/guide'
+      preLoaderRoute: typeof GuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/perfil': {
+      id: '/perfil'
+      path: '/perfil'
+      fullPath: '/perfil'
+      preLoaderRoute: typeof PerfilRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jogo/$id': {
+      id: '/jogo/$id'
+      path: '/jogo/$id'
+      fullPath: '/jogo/$id'
+      preLoaderRoute: typeof JogoIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BibliotecaRoute: BibliotecaRoute,
+  ComunidadeRoute: ComunidadeRoute,
+  DiarioRoute: DiarioRoute,
+  ExplorarRoute: ExplorarRoute,
+  GuideRoute: GuideRoute,
+  PerfilRoute: PerfilRoute,
+  JogoIdRoute: JogoIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
