@@ -9,65 +9,43 @@ import {
   type ErrorComponentProps,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+import { BookOpen, Compass, Home, Library, MessageSquare, Sparkles, User } from "lucide-react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { Logo, btn } from "@/components/elo";
+
+const NAV = [
+  { to: "/", label: "Início", icon: Home },
+  { to: "/explorar", label: "Explorar", icon: Compass },
+  { to: "/biblioteca", label: "Biblioteca", icon: Library },
+  { to: "/diario", label: "Diário", icon: BookOpen },
+  { to: "/comunidade", label: "Comunidade", icon: MessageSquare },
+  { to: "/guide", label: "Elo Guide", icon: Sparkles },
+  { to: "/perfil", label: "Perfil", icon: User },
+] as const;
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
-        </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Go home
-          </Link>
-        </div>
-      </div>
+    <div className="py-24 text-center">
+      <h1 className="text-7xl font-extrabold">404</h1>
+      <p className="mt-2 text-muted-foreground">Essa fase não existe.</p>
+      <Link to="/" className={`${btn} mt-6`}>Voltar ao início</Link>
     </div>
   );
 }
 
 function ErrorComponent({ error, reset }: ErrorComponentProps) {
-  console.error(error);
   const router = useRouter();
   useEffect(() => {
     reportLovableError(error, { boundary: "tanstack_root_error_component" });
   }, [error]);
-
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
-        </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
-        </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-2">
-          <button
-            onClick={() => {
-              router.invalidate();
-              reset();
-            }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Try again
-          </button>
-          <a
-            href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
-          >
-            Go home
-          </a>
-        </div>
+    <div className="flex min-h-screen items-center justify-center px-4 text-center">
+      <div>
+        <h1 className="text-2xl font-bold">Game over inesperado</h1>
+        <p className="mt-2 text-sm text-muted-foreground">Algo deu errado ao carregar a página.</p>
+        <button onClick={() => { router.invalidate(); reset(); }} className={`${btn} mt-6`}>Tentar novamente</button>
       </div>
     </div>
   );
@@ -78,20 +56,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Elo — descubra e acompanhe seus jogos" },
+      { name: "description", content: "Não é só sobre zerar. É sobre tudo o que acontece no caminho." },
+      { property: "og:title", content: "Elo — descubra e acompanhe seus jogos" },
+      { property: "og:description", content: "Não é só sobre zerar. É sobre tudo o que acontece no caminho." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" },
+      { rel: "stylesheet", href: appCss },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
   }),
@@ -103,25 +78,45 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
+    <html lang="pt-BR">
+      <head><HeadContent /></head>
+      <body>{children}<Scripts /></body>
     </html>
   );
 }
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <div className="min-h-screen md:pl-60">
+        <aside className="fixed inset-y-0 left-0 hidden w-60 flex-col border-r bg-card p-5 md:flex">
+          <Link to="/"><Logo /></Link>
+          <nav className="mt-10 flex flex-col gap-1">
+            {NAV.map(({ to, label, icon: Icon }) => (
+              <Link key={to} to={to} activeOptions={{ exact: to === "/" }}
+                className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-muted-foreground transition hover:bg-secondary hover:text-foreground data-[status=active]:bg-primary data-[status=active]:font-semibold data-[status=active]:text-primary-foreground">
+                <Icon className="h-4 w-4" />{label}
+              </Link>
+            ))}
+          </nav>
+          <p className="mt-auto text-xs text-muted-foreground">Projeto acadêmico · dados salvos só neste navegador.</p>
+        </aside>
+        <header className="sticky top-0 z-20 flex items-center border-b bg-background/90 px-4 py-3 backdrop-blur md:hidden">
+          <Link to="/"><Logo className="text-xl" /></Link>
+        </header>
+        <main className="mx-auto max-w-6xl px-4 pb-28 pt-6 md:px-10 md:pb-16 md:pt-10">
+          <Outlet />
+        </main>
+        <nav className="fixed inset-x-0 bottom-0 z-20 grid grid-cols-7 border-t bg-card md:hidden">
+          {NAV.map(({ to, label, icon: Icon }) => (
+            <Link key={to} to={to} activeOptions={{ exact: to === "/" }}
+              className="flex flex-col items-center gap-1 py-2 text-[9px] text-muted-foreground data-[status=active]:text-primary">
+              <Icon className="h-5 w-5" />{label.replace("Elo ", "")}
+            </Link>
+          ))}
+        </nav>
+      </div>
     </QueryClientProvider>
   );
 }
