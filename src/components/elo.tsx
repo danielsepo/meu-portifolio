@@ -10,7 +10,7 @@ export function Logo({ className }: { className?: string }) {
         <circle cx="9" cy="12" r="6" fill="none" stroke="currentColor" strokeWidth="3" />
         <circle cx="15" cy="12" r="6" fill="none" className="stroke-primary" strokeWidth="3" />
       </svg>
-      elo<span className="text-primary">.</span>
+      <span>elo<span className="text-primary">.</span></span>
     </span>
   );
 }

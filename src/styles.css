@@ -1,5 +1,6 @@
 @import "tailwindcss" source(none);
 @source "../src";
+@source inline("cover-0 cover-1 cover-2 cover-3 cover-4 cover-5");
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
