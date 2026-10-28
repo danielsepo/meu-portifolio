@@ -6,8 +6,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
-  --font-sans: "Instrument Sans", system-ui, sans-serif;
+  --font-display: "Archivo", system-ui, sans-serif;
+  --font-sans: "Space Grotesk", system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -37,27 +37,28 @@
 
 :root {
   --radius: 0.75rem;
-  --background: oklch(0.21 0.008 260); /* #17191D */
-  --foreground: oklch(0.965 0.006 106); /* #F5F5F0 */
-  --card: oklch(0.255 0.009 260); /* #22252A */
-  --card-foreground: oklch(0.965 0.006 106);
-  --popover: oklch(0.255 0.009 260);
-  --popover-foreground: oklch(0.965 0.006 106);
-  --primary: oklch(0.93 0.2 125); /* #C8FF45 */
-  --primary-foreground: oklch(0.21 0.008 260);
-  --secondary: oklch(0.3 0.01 260);
-  --secondary-foreground: oklch(0.965 0.006 106);
-  --muted: oklch(0.3 0.01 260);
-  --muted-foreground: oklch(0.67 0.008 250); /* #969A9F */
-  --accent: oklch(0.3 0.01 260);
-  --accent-foreground: oklch(0.965 0.006 106);
-  --cream: oklch(0.95 0.01 95); /* #F2F0E8 */
-  --cream-foreground: oklch(0.21 0.008 260);
-  --destructive: oklch(0.65 0.2 27);
-  --destructive-foreground: oklch(0.965 0.006 106);
-  --border: oklch(0.33 0.01 260);
-  --input: oklch(0.33 0.01 260);
-  --ring: oklch(0.93 0.2 125);
+  /* Paleta Elo — preto esverdeado, carvão, marfim, cinza mineral, verde ácido, oliva */
+  --background: #11120F; /* preto esverdeado */
+  --foreground: #F4F0E5; /* marfim */
+  --card: #20211B; /* carvão */
+  --card-foreground: #F4F0E5;
+  --popover: #20211B;
+  --popover-foreground: #F4F0E5;
+  --primary: #D7FF38; /* verde ácido */
+  --primary-foreground: #11120F;
+  --secondary: #2A2B23; /* carvão elevado */
+  --secondary-foreground: #F4F0E5;
+  --muted: #2A2B23;
+  --muted-foreground: #B8B8AD; /* cinza mineral */
+  --accent: #2A2B23;
+  --accent-foreground: #F4F0E5;
+  --cream: #20211B; /* antes creme claro; agora superfície carvão (remove blocos brancos) */
+  --cream-foreground: #F4F0E5;
+  --destructive: #FF5C4D;
+  --destructive-foreground: #F4F0E5;
+  --border: #45483A; /* oliva escuro */
+  --input: #45483A;
+  --ring: #D7FF38;
 }
 
 @layer base {
@@ -67,7 +68,12 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
   }
-  h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.03em; }
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    font-stretch: 94%; /* recorte condensado do Archivo variável */
+  }
+  ::selection { background: var(--color-primary); color: var(--color-primary-foreground); }
 }
 
 @utility field {
@@ -81,9 +87,9 @@
 }
 
 /* Capas ilustradas locais (não dependem de imagens remotas) */
-@utility cover-0 { background: radial-gradient(circle at 30% 20%, oklch(0.93 0.2 125 / 0.9), transparent 55%), var(--card); }
-@utility cover-1 { background: linear-gradient(160deg, var(--cream) 0 45%, var(--card) 45%); }
-@utility cover-2 { background: repeating-linear-gradient(45deg, var(--card) 0 14px, oklch(0.3 0.01 260) 14px 28px); }
-@utility cover-3 { background: radial-gradient(circle at 70% 80%, var(--cream), transparent 50%), oklch(0.3 0.01 260); }
-@utility cover-4 { background: linear-gradient(0deg, oklch(0.93 0.2 125 / 0.85) 0 30%, var(--card) 30%); }
-@utility cover-5 { background: conic-gradient(from 200deg at 50% 60%, var(--card), oklch(0.36 0.01 260), var(--cream), var(--card)); }
+@utility cover-0 { background: radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--primary) 85%, transparent), transparent 55%), var(--card); }
+@utility cover-1 { background: linear-gradient(160deg, var(--foreground) 0 45%, var(--card) 45%); }
+@utility cover-2 { background: repeating-linear-gradient(45deg, var(--card) 0 14px, var(--border) 14px 28px); }
+@utility cover-3 { background: radial-gradient(circle at 70% 80%, var(--foreground), transparent 50%), var(--secondary); }
+@utility cover-4 { background: linear-gradient(0deg, color-mix(in srgb, var(--primary) 80%, transparent) 0 30%, var(--card) 30%); }
+@utility cover-5 { background: conic-gradient(from 200deg at 50% 60%, var(--card), var(--border), var(--foreground), var(--card)); }
